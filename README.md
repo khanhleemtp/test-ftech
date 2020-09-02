@@ -1,6 +1,6 @@
 # test-ftech
 # PROJECT SETUP
- > NPM install
+ > npm install
 
 # PROJECT RUN
  > node test1.js
