@@ -1,15 +1,31 @@
 const _ = require('lodash')
+var readlineSync = require('readline-sync');
 
 const data = []
 const fomula = ['+', '-', '*', '/']
 
+const input = []
 
 //Cell { key, value }
 function Cell(key, value) {
     return {key: key, value: value}    
 }
 
+console.log('Please enter my format: " Key:A1, Value: A1 5 * B2 7 * + 2 * "')
+
+const num = readlineSync.question('Number of Cells:  ');
+for(let i = 0; i < num; i++) {
+    let key = readlineSync.question('Key of Cell: ');
+    let value = readlineSync.question('Value of Cell: ');
+    let cell = new Cell(key, value);
+    input.push(cell);
+}
+
+console.log('Input' ,input);
 // init input
+
+
+// data test
 let cell1 = new Cell('A1', '6');
 let cell2 = new Cell('A2', 'A1 5 * B2 7 * + 2 *')
 let cell3 = new Cell('B4', 'B2 2 + A2 - 5 *')
@@ -22,7 +38,7 @@ data.push(cell3)
 data.push(cell4)
 data.push(cell5)
 
-console.log('input', data);
+// console.log('input', data);
 
 
 // sort 
@@ -89,9 +105,9 @@ const recursiveCell = (origin, item) => {
 // output
 const ouput = [];
 
-let result = _.map(data, item =>{   
+let result = _.map(input, item =>{   
     if(!isNaN(item.value)) return item;
-    return recursiveCell(data, item);
+    return recursiveCell(input, item);
 })
 
 // console.log( 'result: ', result);
@@ -109,8 +125,6 @@ for (let i in sortKeys) {
 }
 
 console.log('output', ouput);
-
-
 
 
 
